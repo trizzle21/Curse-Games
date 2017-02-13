@@ -3,10 +3,10 @@ export interface Game {
 	Name:string;
 	SupportsAddons:boolean;
 	SupportsVoice:boolean;
-	Slug:string;
-	Order:number;
-	FileName:Array<GameFiles>;
-	category:Array<Category>;
+	// Slug:string;
+	// Order:number;
+	// FileName:Array<GameFiles>;
+	// category:Array<Category>;
 };
 
 interface GameFiles {

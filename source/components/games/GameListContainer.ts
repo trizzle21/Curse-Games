@@ -10,9 +10,12 @@ import { fetchGames } from '../../actions/games';
 
 
 function mapStateToProps(state: GlobalState, props: GameListProps): ConnectedProps {
+    let list: number[] = [1, 2, 3];
+    console.log(typeof list);
     return {
     	games: state.games.games,
     	isFetching: state.games.isFetching,
+    	progress: state.games.progress,
     
     }
 };
@@ -28,9 +31,3 @@ function mapDispatchToProps(dispatch: Dispatch<any>): ConnectedDispatch {
 export const GameListContainer = connect(mapStateToProps, mapDispatchToProps)(GameList) as React.ComponentClass<GameListProps>;
 
 
-/*{ 
-        fetchGamesFailed: Function,
-        fetchGamesStarted: Function,
-        fetchGamesSucceeded: Function,
-
-    }*/

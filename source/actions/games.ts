@@ -18,12 +18,12 @@ export type FETCH_GAMES_SUCCEEDED = 'FETCH_GAMES_SUCCEEDED';
 export const FETCH_GAMES_SUCCEEDED: FETCH_GAMES_SUCCEEDED = 'FETCH_GAMES_SUCCEEDED';
 export type FetchGamesSucceeded = {
     type: FETCH_GAMES_SUCCEEDED;
-    Game:Object;
+    game: Array<Game>;
 
 };
 
-function fetchGamesSucceeded(Game: Object): FetchGamesSucceeded { 
-    return { type: FETCH_GAMES_SUCCEEDED, Game };
+function fetchGamesSucceeded(Game: Game[]): FetchGamesSucceeded { 
+    return { type: FETCH_GAMES_SUCCEEDED, game: Game };
 }
 
 // Fetch Games Failed
@@ -38,20 +38,44 @@ function fetchGamesFailed(): FetchGamesFailed {
 }
 
 
+export type INCREASE_PROGRESS = 'INCREASE_PROGRESS';
+export const INCREASE_PROGRESS: INCREASE_PROGRESS = 'INCREASE_PROGRESS';
+export type IncreaseProgress = {
+    type: INCREASE_PROGRESS;
+};
 
-// export type RECIEVE_GAMES = 'RECIEVE_GAMES';
-// export const RECIEVE_GAMES: RECIEVE_GAMES = 'RECIEVE_GAMES';
-// export type RecieveGames = {
-//     type: RECIEVE_GAMES;
 
-// };
+function increaseProgress() {
+    return (dispatch: Redux.Dispatch<any>, getState: GlobalStateGetter) => {
+        dispatch({ type: INCREASE_PROGRESS }); 
+    };
+}
 
-// function recieveGames(Game: Game): RecieveGames { 
-//     return { 
-//        type: RECIEVE_GAMES,
-//        JSON: Game[],
-//     };
-// }
+
+
+
+
+function turnDataIntoGameArray(gameArray: Array<any>){ 
+    var Games = new Array();
+    
+    for(let a of gameArray){
+        increaseProgress();
+        let game: Game;
+        
+        Games.push({
+            ID: a.ID,
+            Name: a.Name,
+            // SupportsAddons: a['SupportsAddons'],
+            // SupportsVoice: a['SupportsAddons'],
+            // Slug: a['Slug'],
+            // Order:a['Number'],
+        });
+        
+    }
+    return Games;
+}
+
+
 
 
 
@@ -62,7 +86,9 @@ export function fetchGames() {
     return (dispatch: Redux.Dispatch<any>, getState: GlobalStateGetter) => {
         dispatch(fetchGamesStarted()); 
         fetch(`https://clientupdate-v6.cursecdn.com/Feed/games/v10/games.json`)
-        .then(response => dispatch(fetchGamesSucceeded(response['data'])), json => dispatch(fetchGamesFailed()));
+        .then(response => response.json())
+        .then(json => dispatch(fetchGamesSucceeded(turnDataIntoGameArray(json['data']))), json => dispatch(fetchGamesFailed()));
+            
 
         console.log("finished");
 
