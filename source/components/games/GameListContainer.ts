@@ -13,14 +13,13 @@ function mapStateToProps(state: GlobalState, props: GameListProps): ConnectedPro
     return {
     	games: state.games.games,
     	isFetching: state.games.isFetching,
-    	
-
+    
     }
 };
 
 function mapDispatchToProps(dispatch: Dispatch<any>): ConnectedDispatch {
     return bindActionCreators({
-        fetchGames: Function,
+        fetchGames,
         
     }, dispatch);
 };

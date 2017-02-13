@@ -5,12 +5,18 @@ import {fetchGames} from '../../actions/games';
 
 export interface GameListProps extends React.Props<GameList> {
     // Define any props taken by List itself.
+    ID:number;
+    Name:string;
+    SupportsAddons:boolean;
+    SupportsVoice:boolean;
+    Slug:string;
+    Order:number;
 }
 
 export interface ConnectedProps {
     // Define any connected props here. (The ones mapped by ListContainer.)
-    isFetching: boolean;
     games: Game[];
+    isFetching: boolean;
 }
 
 export interface ConnectedDispatch {
@@ -31,7 +37,7 @@ export class GameList extends React.Component<CombinedTypes, void> {
     }
 
     render() {
-        console.log(this.props);
+        console.log(this.props.isFetching);
         if(this.props.isFetching){
             return(
                     <div className='GameList--root'>

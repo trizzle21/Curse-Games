@@ -18,12 +18,12 @@ export type FETCH_GAMES_SUCCEEDED = 'FETCH_GAMES_SUCCEEDED';
 export const FETCH_GAMES_SUCCEEDED: FETCH_GAMES_SUCCEEDED = 'FETCH_GAMES_SUCCEEDED';
 export type FetchGamesSucceeded = {
     type: FETCH_GAMES_SUCCEEDED;
-    Game: Game[]
+    Game:Object;
 
 };
 
-function fetchGamesSucceeded(Game: Game[]): FetchGamesSucceeded { 
-    return { type: FETCH_GAMES_SUCCEEDED, Game: Game };
+function fetchGamesSucceeded(Game: Object): FetchGamesSucceeded { 
+    return { type: FETCH_GAMES_SUCCEEDED, Game };
 }
 
 // Fetch Games Failed
@@ -56,16 +56,11 @@ function fetchGamesFailed(): FetchGamesFailed {
 
 
 
-
-
-
-
-
-
 // Fetch Games Thunk
 export function fetchGames() {
+    
     return (dispatch: Redux.Dispatch<any>, getState: GlobalStateGetter) => {
-        dispatch(fetchGamesStarted());
+        dispatch(fetchGamesStarted()); 
         fetch(`https://clientupdate-v6.cursecdn.com/Feed/games/v10/games.json`)
         .then(response => dispatch(fetchGamesSucceeded(response['data'])), json => dispatch(fetchGamesFailed()));
 

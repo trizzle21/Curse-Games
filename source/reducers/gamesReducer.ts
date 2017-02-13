@@ -14,8 +14,6 @@ const initialState: GamesState = {
 export function gamesReducer(state: GamesState = initialState, action: Actions) {
     switch (action.type) {
         case FETCH_GAMES_STARTED:
-            console.log('started');
-
             return {
                 ...state,
                 isFetching: true
@@ -26,7 +24,7 @@ export function gamesReducer(state: GamesState = initialState, action: Actions) 
                 isFetching: false
             }
         case FETCH_GAMES_SUCCEEDED:
-            console.log('succeeded');
+            console.log(action);
             return {
                 ...state,
                 Games: action.Game,
