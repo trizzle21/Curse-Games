@@ -3,6 +3,7 @@ export interface Game {
 	Name:string;
 	SupportsAddons:boolean;
 	SupportsVoice:boolean;
+	Icon:string;
 	// Slug:string;
 	// Order:number;
 	// FileName:Array<GameFiles>;

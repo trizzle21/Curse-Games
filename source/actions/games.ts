@@ -1,5 +1,7 @@
 import { GlobalStateGetter } from "../state/GlobalState";
 import { Game } from '../models/Game';
+import { config } from '../globals';
+import { template } from "lodash";
 
 // Fetch Games Started
 export type FETCH_GAMES_STARTED = 'FETCH_GAMES_STARTED';
@@ -59,14 +61,14 @@ function turnDataIntoGameArray(gameArray: Array<any>){
     var Games = new Array();
     
     for(let a of gameArray){
-        increaseProgress();
         let game: Game;
         
         Games.push({
             ID: a.ID,
             Name: a.Name,
-            // SupportsAddons: a['SupportsAddons'],
-            // SupportsVoice: a['SupportsAddons'],
+            SupportsAddons: a.SupportsAddons,
+            SupportsVoice: a.SupportsAddons,
+            Icon: config.gameIconURLTemplate({ 'gameID': a.ID }),
             // Slug: a['Slug'],
             // Order:a['Number'],
         });
@@ -82,10 +84,9 @@ function turnDataIntoGameArray(gameArray: Array<any>){
 
 // Fetch Games Thunk
 export function fetchGames() {
-    
     return (dispatch: Redux.Dispatch<any>, getState: GlobalStateGetter) => {
         dispatch(fetchGamesStarted()); 
-        fetch(`https://clientupdate-v6.cursecdn.com/Feed/games/v10/games.json`)
+        fetch(config.gamesDataURL)
         .then(response => response.json())
         .then(json => dispatch(fetchGamesSucceeded(turnDataIntoGameArray(json['data']))), json => dispatch(fetchGamesFailed()));
             
