@@ -1,31 +1,12 @@
 export interface Game {
 	ID:number;
+	[index: number]:number;
 	Name:string;
 	SupportsAddons:boolean;
 	SupportsVoice:boolean;
 	Icon:string;
-	// Slug:string;
-	// Order:number;
-	// FileName:Array<GameFiles>;
-	// category:Array<Category>;
+	Slug:string;
+	GameFiles: Array<any>;
+	Category: Array<any>;
 };
 
-interface GameFiles {
-	ID:number;
- 	GameId:number;
- 	Name:string;
-
-
-}
-
-
-interface Category {
-	ID:number;
-	GameID:number;
-	Name:string;
-	packageType:number;
-	Path:string;
-	InitialInclusionPattern:string;
-	ExtraIncludePattern:any;
-
-}

@@ -5,7 +5,7 @@ The purpose of this test is to evaluate your skill as developer. It should take 
 ## Getting Started
 
 1. Use the latest Node LTS
-2. From the project root, run `npm install`
+2. From the project root, run ` `
 3. To build the project, run `npm start`
 4. A browser should automatically open after the build is complete. If not, go to http://localhost:8080/
 
@@ -40,7 +40,6 @@ import { config } from "./../../globals";
 
 config.gamesDataURL
 ``` 
-
 - In the games data, the game id (number) is located at the path `data[].ID`
 - In the games data, the game name (string) is located at the path `data[].Name`
 - In the game data, whether or not the game supports addons (boolean) is located at the path `data[].SupportsAddons`
@@ -77,4 +76,14 @@ const gameIconURL = config.gameIconURLTemplate({gameID: gameID});
 - Implement game search functionality
 - Implement functionality to periodically re-download the game data file (in case it has updated)
 - Provide details on choices on UI layout
+
+
+
+I find that separated list items makes it easier for users to find what they're looking for. I did not copy, but I was inspired by Material Design in designing the lists. The return button I designed to be unassuming but noticeablt to the user. It should be mobile ready as well.
+
+
+
+
+
+
 

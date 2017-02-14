@@ -7,11 +7,156 @@
 }
 
 .Game {
-	width:100%;
-	
-	height:140px;
+	color:black;
+	cursor:pointer;
+	width:97%;
+	height:90px;
 	background-color:white;
-	border:1px solid black;
-	margin-bottom:0;
+	margin: 0 0 10px 0;
 	list-style: none;
 }
+
+.Link {
+	color:black;
+	text-decoration:none;
+}
+
+
+
+@media all and (max-width:650px){
+	.Game{
+		height:170px;
+	}
+
+}
+
+.leftSideSquare {
+	float:Left;
+	display:inline-block;
+	margin-left:10px;
+
+}
+
+.rightSideSquare {
+	float:Right;
+	display:inline-block;
+	margin-right:10px;
+	margin-top:20px;
+
+}
+
+.icon {
+	display:inline-block;
+	vertical-align:middle; 
+	margin-top:10px;
+	margin-left:0px;
+}
+
+.Title {
+	display:inline-block;
+	padding-left:20px;
+	margin-bottom:10px;
+	font-size: 22px;
+	color:black;
+}
+
+
+
+//Game Page
+
+.GameData{
+  width:80%;
+  height:100%;
+  background-color:white;
+  margin: 30px auto 0 auto;
+  padding: 25px;
+  border-radius: 0px;
+}
+
+.GameInfo {
+	width:100%;
+	display:block;
+	margin-bottom:20px;
+}
+
+.GameImage {
+	display:inline-block;
+	vertical-align:middle; 
+
+
+}
+
+.GameNameInfo{
+	display:inline-block;
+	vertical-align:middle; 
+	margin:0 0 20px 20px;
+}
+
+.GameTitle{
+	font-size:30px;
+}
+.Slug{
+	display:block;
+	font-size:20px;
+}
+
+
+
+
+.GameFiles{	
+	display:block;
+	width:100%;
+
+}
+
+.GameFile{
+	height:10px;
+	background-color:white;
+	list-style:none;
+	padding:15px 0 0 5px;
+
+}
+
+.Category {
+	height:10px;
+	background-color:white;
+	list-style:none;
+	padding:0 0 0 5px;
+
+}
+
+
+.NameList {
+	display:block;
+}
+
+
+.Categories{
+	margin: 10px 0 0 0;
+	display:block;
+	width:33%;
+
+}
+
+
+.subtitle {
+	margin-bottom:10px;
+}
+
+
+.Return {
+	height:20px;
+	width:70px;
+	color:white;
+	padding:5px 10px 5px 10px;
+	background-color:grey;
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+

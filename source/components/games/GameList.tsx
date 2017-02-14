@@ -23,31 +23,29 @@ export interface ConnectedDispatch {
     // Define any connected dispatch actions here. (The ones mapped by ListContainer.)
     fetchGames:Function;
 
-
 }
+
 
 type CombinedTypes = GameListProps & ConnectedProps & ConnectedDispatch;
 
 export class GameList extends React.Component<CombinedTypes, void> {
     
     componentDidMount(){
-        console.log(typeof this.props.games);
-
         const { fetchGames } = this.props;
-        console.log('mounted');
         fetchGames();
     }
 
-    render() {
 
-        console.log(this.props.progress);
+
+    render() {
+        //Uses Opacity as progress.
         if(this.props.isFetching){
             return(
-                    <div className='GameList--root'>
+                    
+                <div className='GameList--root'>
                     <img src="/assets/images/flame.png" />
                     <br />
-                    <progress value="200" max="200"></progress>
-
+                    <h2 style={{opacity:this.props.progress}}>Loading...</h2>
 
                 </div>
 
@@ -56,20 +54,23 @@ export class GameList extends React.Component<CombinedTypes, void> {
             return (
                 <div className='GameList--root'>
                     <img src="/assets/images/flame.png" />
-                    <h1>Curse React Test</h1>
+                    <h1>Curse React</h1>
 
                      <ul>
                          {this.props.games.map(function(game){
-                           return <Link to={`/game/${game.ID}`}> <li className="Game" key={game.ID} >
-                                
-                                <img src={game.Icon} />
-                                <b>
+                           return  <Link className="Link" to={`/game/${game.ID}`} key={game.ID}> <div className="Game"  >
+                                <div className="leftSideSquare">
+                                <img className="icon" src={game.Icon} />
+                                <div className="Title">
                                    {game.Name}
-                                </b>
-                                <div>Supports AddOn: {game.SupportsAddons.toString()}</div>
-                                <div>Supports Video: {game.SupportsVoice.toString()}</div>
-                            </li>
-                            </Link>                           
+                                </div>
+                                </div>
+                                <div className="rightSideSquare">
+                                    <div>Supports AddOn: {game.SupportsAddons.toString()}</div>
+                                    <div>Supports Video: {game.SupportsVoice.toString()}</div>
+                                </div>
+                            </div>
+                                </Link>                        
 
                          })
 

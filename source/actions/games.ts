@@ -1,7 +1,7 @@
 import { GlobalStateGetter } from "../state/GlobalState";
-import { Game } from '../models/Game';
+import { Game  } from '../models/Game';
 import { config } from '../globals';
-import { template } from "lodash";
+import { template, map} from "lodash";
 
 // Fetch Games Started
 export type FETCH_GAMES_STARTED = 'FETCH_GAMES_STARTED';
@@ -40,41 +40,32 @@ function fetchGamesFailed(): FetchGamesFailed {
 }
 
 
-export type INCREASE_PROGRESS = 'INCREASE_PROGRESS';
-export const INCREASE_PROGRESS: INCREASE_PROGRESS = 'INCREASE_PROGRESS';
-export type IncreaseProgress = {
-    type: INCREASE_PROGRESS;
-};
-
-
-function increaseProgress() {
-    return (dispatch: Redux.Dispatch<any>, getState: GlobalStateGetter) => {
-        dispatch({ type: INCREASE_PROGRESS }); 
-    };
+function comparator(a:any,b:any){
+    return a.Order - b.Order;
 }
 
-
-
-
-
 function turnDataIntoGameArray(gameArray: Array<any>){ 
-    var Games = new Array();
-    
+    var length = gameArray.length;
+    var Games = new Array(length);
     for(let a of gameArray){
         let game: Game;
         
         Games.push({
             ID: a.ID,
+            Order:a.Order,
             Name: a.Name,
             SupportsAddons: a.SupportsAddons,
             SupportsVoice: a.SupportsAddons,
             Icon: config.gameIconURLTemplate({ 'gameID': a.ID }),
-            // Slug: a['Slug'],
-            // Order:a['Number'],
+            Slug: a.Slug,
+            GameFiles: a.GameFiles,
+            Category: a.CategorySections,
+
         });
+
         
     }
-    return Games;
+    return Games.sort(comparator);
 }
 
 
@@ -91,7 +82,6 @@ export function fetchGames() {
         .then(json => dispatch(fetchGamesSucceeded(turnDataIntoGameArray(json['data']))), json => dispatch(fetchGamesFailed()));
             
 
-        console.log("finished");
 
 
 

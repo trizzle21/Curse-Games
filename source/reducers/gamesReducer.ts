@@ -1,10 +1,10 @@
 import { GamesState } from "../state/GamesState";
 import { 
-    FetchGamesStarted, FetchGamesSucceeded, FetchGamesFailed, IncreaseProgress,
-    FETCH_GAMES_STARTED, FETCH_GAMES_SUCCEEDED, FETCH_GAMES_FAILED, INCREASE_PROGRESS
+    FetchGamesStarted, FetchGamesSucceeded, FetchGamesFailed,
+    FETCH_GAMES_STARTED, FETCH_GAMES_SUCCEEDED, FETCH_GAMES_FAILED, 
 } from '../actions/games';
 
-type Actions = FetchGamesStarted | FetchGamesSucceeded | FetchGamesFailed | IncreaseProgress;
+type Actions = FetchGamesStarted | FetchGamesSucceeded | FetchGamesFailed;
 
 const initialState: GamesState = {
     games: [],
@@ -17,7 +17,8 @@ export function gamesReducer(state: GamesState = initialState, action: Actions) 
         case FETCH_GAMES_STARTED:
             return {
                 ...state,
-                isFetching: true
+                isFetching: true,
+                progress: .5,
             }
         case FETCH_GAMES_FAILED:
             return {
@@ -25,17 +26,12 @@ export function gamesReducer(state: GamesState = initialState, action: Actions) 
                 isFetching: false
             }
         case FETCH_GAMES_SUCCEEDED:
-            console.log(action);
             return {
                 ...state,
                 games: action.game,
-                isFetching: false
+                isFetching: false,
+                progress: 1,
             } 
-        case INCREASE_PROGRESS:
-            return {
-                ...state,
-                progress: state.progress += 10,
-            }
     }
 
     return state;
