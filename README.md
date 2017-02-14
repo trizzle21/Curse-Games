@@ -1,7 +1,3 @@
-# Curse React Test
-
-The purpose of this test is to evaluate your skill as developer. It should take you about 2 hours to complete, although you may take more time if you wish.
-
 ## Getting Started
 
 1. Use the latest Node LTS
@@ -69,18 +65,6 @@ const gameIconURL = config.gameIconURLTemplate({gameID: gameID});
     - `source/globals.ts` contains the global application values including `config` and `store` (Redux Store)
 
 - We've provided `source/components/games/GameListContainer.ts` as a starting presentation component.
-
-## Bonus, Not Required
-
-- Implement state and component testing using Jest
-- Implement game search functionality
-- Implement functionality to periodically re-download the game data file (in case it has updated)
-- Provide details on choices on UI layout
-
-
-
-I find that separated list items makes it easier for users to find what they're looking for. I did not copy, but I was inspired by Material Design in designing the lists. The return button I designed to be unassuming but noticeablt to the user. It should be mobile ready as well.
-
 
 
 
